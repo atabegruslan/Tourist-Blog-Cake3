@@ -10,7 +10,13 @@
 - https://www.youtube.com/playlist?list=PLmrTMUhqzS3jZEhNrrysfYAJUNFjjDqmB
 - https://www.youtube.com/playlist?list=PLsoBxH455yoZExk1_J3QxbW5F1F0MJJez
 - https://www.youtube.com/playlist?list=PLWov0H-mAq9inDqfhh3hFbKYpv3P6p1_d
-
+- https://www.sitepoint.com/application-development-cakephp/ (Old, but good reference)
+- https://medium.com/@Phillaf/cakephp-crud-walk-through-501310a43462
+- https://book.cakephp.org/3/en/controllers/components/authentication.html
+- https://book.cakephp.org/2/en/models/associations-linking-models-together.html
+- https://www.startutorial.com/articles/view/how-to-build-facebook-login-using-cakephp-facebook-login-plugin
+- https://book.cakephp.org/3/en/tutorials-and-examples/blog-auth-example/auth.html
+- https://www.youtube.com/playlist?list=PLy6f6YeaisJLnQpKpeeJX_ooJg_IH1Oib (Old, but good reference)
 ## Preliminaries
 
 Include php intl extension in `php.ini`
