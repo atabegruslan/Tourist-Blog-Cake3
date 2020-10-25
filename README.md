@@ -551,7 +551,7 @@ index.ctp
 - Locale
 - APIs
 - Input dropmenu, images, videos, custom input fields
-- Filters
+- Filters, sort by column
 - IO Excel/CSV, Filter
 - Looks: fa glyphicons, use BS nav for topbar, ...
 - Notes on: contain/join, beforeFilter & beforeRender ... , model relations
