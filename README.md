@@ -235,7 +235,6 @@ Add `<?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => '
 
 - http://alvinalexander.com/php/cakephp-user-registration-form-example-recipe
 
-
 ## Bootstrap plugin
 
 ### For CakePHP 2
@@ -356,6 +355,193 @@ In login.ctp (for example):
 <?= $this->Form->control('email'); ?>
 <?= $this->Form->control('password'); ?>
 <?= $this->Form->control('Login', ['type' => 'submit']); ?>
+```
+
+## 2 Tables
+
+1. Create a `countries` table
+
+2. Generate files
+
+By either run `bin/cake bake all countries` or seperately:
+
+| CakePHP 2 | CakePHP 3 |
+|---|---|
+| `console/cake bake model Country` | `bin/cake bake model countries` |
+| `console/cake bake controller Countries` | `bin/cake bake controller countries` |
+| `console/cake bake view Countries` | `bin/cake bake template countries` |
+
+Some theory : https://book.cakephp.org/3/en/orm/associations.html
+
+|Relationship | Association Type | Example | Complementing Model should have |
+|---|---|---|---|
+| 1-1 | hasOne | 1 entry is only in 1 country | belongsTo |
+| 1-many | hasMany | A user can make many entries | belongsTo |
+| many-1 | belongsTo | Many entries can belong to the same user | hasOne or hasMany |
+| many-many | hasAndBelongsToMany (Cake 2) / belongsToMany (Cake 3) |  |
+
+3. Update the models
+
+src/Model/Table/CountriesTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
+
+class CountriesTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->hasOne('Entries', [
+            'foreignKey' => 'country_id',
+        ]);
+    }
+```
+
+src/Model/Table/EntriesTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
+
+class EntriesTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->belongsTo('Countries', [
+            'foreignKey' => 'country_id',
+        ]);
+    }
+```
+
+For completion, these are the remaining cases
+
+The above `hasOne` example in CakePHP 2:
+
+Model/Country.php
+```php
+App::uses('AppModel', 'Model');
+
+class Country extends AppModel
+{
+    //...
+    public $hasOne = array(
+        'Entry' => array(
+            'foreignKey' => 'country_id'
+        )
+    );
+}
+```
+
+Model/Entry.php
+```php
+App::uses('AppModel', 'Model');
+
+class Entry extends AppModel
+{
+    //...
+    public $belongsTo = array(
+        'Country' => array(
+            'foreignKey' => 'country_id',
+        ),
+    );
+}
+```
+
+`hasMany` example in CakePHP 3:
+
+src/Model/Table/UsersTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
+
+class UsersTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->hasMany('Entries', [
+            'foreignKey' => 'user_id',
+        ]);
+    }
+```
+
+src/Model/Table/EntriesTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
+
+class EntriesTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+        ]);
+    }
+```
+
+`hasMany` example in CakePHP 2:
+
+Model/User.php
+```php
+App::uses('AppModel', 'Model');
+
+class User extends AppModel
+{
+    //...
+    public $hasMany = array(
+        'Entry' => array(
+            'foreignKey' => 'user_id'
+        )
+    );
+}
+```
+
+Model/Entry.php
+```php
+App::uses('AppModel', 'Model');
+
+class Entry extends AppModel
+{
+    //...
+    public $belongsTo = array(
+        'User' => array(
+            'foreignKey' => 'user_id',
+        ),
+    );
+}
+```
+
+`belongsToMany` example in CakePHP 3:
+
+`hasAndBelongsToMany` example in CakePHP 2:
+
+4. Adjust Controller and View
+
+```php
+class EntriesController extends AppController
+{
+    public function index()
+    {
+        $this->paginate = [
+            'contain' => ['Users', 'Countries'],
+        ];
+
+    //...
+```
+
+Theory: Join and Contain:
+
+![]()
+
+index.ctp
+```php
+<tbody>
+    <?php foreach ($entries as $entry): ?>
+    <tr>
+        <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
 ```
 
 # Todo

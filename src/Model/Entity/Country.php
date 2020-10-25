@@ -4,18 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Entry Entity
+ * Country Entity
  *
  * @property int $id
- * @property string $place
- * @property string $comments
- * @property string|null $img_url
- * @property int|null $user_id
- * @property \Cake\I18n\FrozenTime $time
+ * @property string $name
+ * @property string $slug
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Entry[] $entries
  */
-class Entry extends Entity
+class Country extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,13 +24,8 @@ class Entry extends Entity
      * @var array
      */
     protected $_accessible = [
-        'place' => true,
-        'comments' => true,
-        'img_url' => true,
-        'user_id' => true,
-        'country_id' => true,
-        'time' => true,
-        // 'user' => true,
-        // 'country' => true,
+        'name' => true,
+        'slug' => true,
+        'entries' => true,
     ];
 }

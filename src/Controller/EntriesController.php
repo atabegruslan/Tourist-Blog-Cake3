@@ -20,7 +20,7 @@ class EntriesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users'],
+            'contain' => ['Users', 'Countries'],
         ];
         $entries = $this->paginate($this->Entries);
 

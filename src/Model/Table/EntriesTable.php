@@ -39,6 +39,10 @@ class EntriesTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
         ]);
+
+        $this->belongsTo('Countries', [
+            'foreignKey' => 'country_id',
+        ]);
     }
 
     /**
