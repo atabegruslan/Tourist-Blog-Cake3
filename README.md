@@ -354,3 +354,15 @@ In login.ctp (for example):
 <?= $this->Form->control('password'); ?>
 <?= $this->Form->control('Login', ['type' => 'submit']); ?>
 ```
+
+# Todo
+
+- Admin backend via plugin
+- Crontab
+- Locale
+- APIs
+- Input dropmenu, images, videos, custom input fields
+- Filters
+- IO Excel/CSV, Filter
+- Looks: fa glyphicons, use BS nav for topbar, ...
+- Notes on: contain/join, beforeFilter & beforeRender ... , model relations
