@@ -17,6 +17,9 @@
 - https://www.startutorial.com/articles/view/how-to-build-facebook-login-using-cakephp-facebook-login-plugin
 - https://book.cakephp.org/3/en/tutorials-and-examples/blog-auth-example/auth.html
 - https://www.youtube.com/playlist?list=PLy6f6YeaisJLnQpKpeeJX_ooJg_IH1Oib (Old, but good reference)
+- https://www.youtube.com/playlist?list=PLillGF-RfqbbObywQ2KOugFDL9F_k4yLr
+- https://www.youtube.com/playlist?list=PLWov0H-mAq9inDqfhh3hFbKYpv3P6p1_d
+
 ## Preliminaries
 
 Include php intl extension in `php.ini`
