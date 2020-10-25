@@ -534,7 +534,7 @@ class EntriesController extends AppController
 
 Theory: Join and Contain:
 
-![]()
+![](https://raw.githubusercontent.com/atabegruslan/Tourist-Blog-Cake3/master/Illustrations/CakePHP_Join_vs_Contain.png)
 
 index.ctp
 ```php
