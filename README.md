@@ -359,9 +359,9 @@ In login.ctp (for example):
 
 ## 2 Tables
 
-1. Create a `countries` table
+### 1) Create a `countries` table
 
-2. Generate files
+### 2) Generate files
 
 By either run `bin/cake bake all countries` or seperately:
 
@@ -371,16 +371,16 @@ By either run `bin/cake bake all countries` or seperately:
 | `console/cake bake controller Countries` | `bin/cake bake controller countries` |
 | `console/cake bake view Countries` | `bin/cake bake template countries` |
 
-Some theory : https://book.cakephp.org/3/en/orm/associations.html
+#### Some theory : https://book.cakephp.org/3/en/orm/associations.html
 
 |Relationship | Association Type | Example | Complementing Model should have |
 |---|---|---|---|
 | 1-1 | hasOne | 1 entry is only in 1 country | belongsTo |
 | 1-many | hasMany | A user can make many entries | belongsTo |
 | many-1 | belongsTo | Many entries can belong to the same user | hasOne or hasMany |
-| many-many | hasAndBelongsToMany (Cake 2) / belongsToMany (Cake 3) |  |
+| many-many | hasAndBelongsToMany (Cake 2) / belongsToMany (Cake 3) | Continents and Countries |
 
-3. Update the models
+### 3) Update the models
 
 src/Model/Table/CountriesTable.php
 ```php
@@ -414,9 +414,9 @@ class EntriesTable extends Table
     }
 ```
 
-For completion, these are the remaining cases
+#### For completion, these are the remaining cases
 
-The above `hasOne` example in CakePHP 2:
+##### The above `hasOne` example in CakePHP 2:
 
 Model/Country.php
 ```php
@@ -448,7 +448,7 @@ class Entry extends AppModel
 }
 ```
 
-`hasMany` example in CakePHP 3:
+##### `hasMany` example in CakePHP 3:
 
 src/Model/Table/UsersTable.php
 ```php
@@ -482,7 +482,7 @@ class EntriesTable extends Table
     }
 ```
 
-`hasMany` example in CakePHP 2:
+##### `hasMany` example in CakePHP 2:
 
 Model/User.php
 ```php
@@ -514,11 +514,81 @@ class Entry extends AppModel
 }
 ```
 
-`belongsToMany` example in CakePHP 3:
+##### `belongsToMany` example in CakePHP 3:
 
-`hasAndBelongsToMany` example in CakePHP 2:
+src/Model/Table/CountriesTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
 
-4. Adjust Controller and View
+class CountriesTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->belongsToMany('Continents', [
+            'foreignKey' => 'continent_id',
+            'targetForeignKey' => 'country_id',
+            'joinTable' => 'continents_countries',
+        ]);
+    }
+```
+
+src/Model/Table/ContinentsTable.php
+```php
+namespace App\Model\Table;
+use Cake\ORM\Table;
+
+class ContinentsTable extends Table
+{
+    public function initialize(array $config)
+    {
+        //...
+        $this->belongsToMany('Countries', [
+            'foreignKey' => 'continent_id',
+            'targetForeignKey' => 'country_id',
+            'joinTable' => 'continents_countries',
+        ]);
+    }
+```
+
+##### `hasAndBelongsToMany` example in CakePHP 2:
+
+Model/Country.php
+```php
+App::uses('AppModel', 'Model');
+
+class Country extends AppModel
+{
+    //...
+    public $hasAndBelongsToMany = array(
+        'Continent' => array(
+            'joinTable' => 'continents_countries',
+            'foreignKey' => 'continent_id',
+            'associationForeignKey' => 'country_id',
+        )
+    );
+}
+```
+
+Model/Continent.php
+```php
+App::uses('AppModel', 'Model');
+
+class Continent extends AppModel
+{
+    //...
+    public $hasAndBelongsToMany = array(
+        'Country' => array(
+            'joinTable' => 'continents_countries',
+            'foreignKey' => 'continent_id',
+            'associationForeignKey' => 'country_id',
+        ),
+    );
+}
+```
+
+### 4) Adjust Controller and View
 
 ```php
 class EntriesController extends AppController
@@ -532,7 +602,7 @@ class EntriesController extends AppController
     //...
 ```
 
-Theory: Join and Contain:
+#### Theory: Join and Contain
 
 ![](https://raw.githubusercontent.com/atabegruslan/Tourist-Blog-Cake3/master/Illustrations/CakePHP_Join_vs_Contain.png)
 

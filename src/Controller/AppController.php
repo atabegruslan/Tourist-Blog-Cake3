@@ -68,4 +68,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function beforeFilter(Event $event) {
+        
+    }
+
+    public function beforeRender(Event $event) {
+        
+    }
 }

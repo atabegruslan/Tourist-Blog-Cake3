@@ -4,15 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Country Entity
+ * Continent Entity
  *
  * @property int $id
  * @property string $name
- * @property string $slug
  *
- * @property \App\Model\Entity\Entry[] $entries
+ * @property \App\Model\Entity\Country[] $countries
  */
-class Country extends Entity
+class Continent extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -25,8 +24,6 @@ class Country extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'slug' => true,
-        'entries' => true,
-        'continents' => true,
+        'countries' => true,
     ];
 }

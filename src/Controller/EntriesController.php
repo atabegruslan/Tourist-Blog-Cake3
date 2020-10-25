@@ -20,8 +20,20 @@ class EntriesController extends AppController
     public function index()
     {
         $this->paginate = [
+            //'fields' => ["Users.*"],
             'contain' => ['Users', 'Countries'],
+            // 'joins' => [
+            //     [
+            //         'table' => 'countries',
+            //         'alias' => 'Countries',
+            //         'type' => 'left',
+            //         'conditions' => [
+            //             'Entries.country_id = Countries.id',
+            //         ],
+            //     ],
+            // ],
         ];
+
         $entries = $this->paginate($this->Entries);
 
         $this->set(compact('entries'));
