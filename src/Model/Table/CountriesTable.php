@@ -41,8 +41,8 @@ class CountriesTable extends Table
         ]);
 
         $this->belongsToMany('Continents', [
-            'foreignKey' => 'continent_id',
-            'targetForeignKey' => 'country_id',
+            'foreignKey' => 'country_id',
+            'targetForeignKey' => 'continent_id',
             'joinTable' => 'continents_countries',
         ]);
     }
