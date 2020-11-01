@@ -19,24 +19,27 @@ class EntriesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            // 'fields' => ["Users.*", "Entries.*", "Countries.*"],
-            'contain' => ['Users', 'Countries'/*=>['Continents']*/],
-            // 'joins' => [
-            //     [
-            //         'table' => 'countries',
-            //         'alias' => 'Countries',
-            //         'type' => 'left',
-            //         'conditions' => [
-            //             'Entries.country_id = Countries.id',
-            //         ],
-            //     ],
-            // ],
+        // Paginate the ORM table:
+        // $this->paginate = [
+        //     'contain' => ['Users', 'Countries' => ['Continents']],
+        // ];
+
+        // $entries = $this->paginate($this->Entries);
+
+        // $this->set(compact('entries'));
+
+        // ------------------------------
+
+        // Paginate a query:
+        $option = [
+            'contain' => ['Users', 'Countries' => ['Continents']]
         ];
 
-        $entries = $this->paginate($this->Entries);
+        //$entries = $this->Entries->find('all', $option)->toArray(); 
+        //pr($entries);exit;
+        $entries = $this->Entries->find('all', $option);
 
-        $this->set(compact('entries'));
+        $this->set('entries', $this->paginate($entries));
     }
 
     /**

@@ -3,6 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Entry[]|\Cake\Collection\CollectionInterface $entries
  */
+
+use Cake\Utility\Hash;
+
 ?>
 
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -48,7 +51,7 @@
                 <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
                 <td><?= h($entry->time) ?></td>
                 <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
-                <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
+                <td><?= $entry->has('country') && $entry->country->has('continents') ? implode(', ', Hash::extract($entry->country->continents, '{n}.name')) : '' ?></td>                
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $entry->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $entry->id]) ?>
