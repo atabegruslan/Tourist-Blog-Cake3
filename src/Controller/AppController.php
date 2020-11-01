@@ -69,11 +69,15 @@ class AppController extends Controller
         //$this->loadComponent('Security');
     }
 
-    public function beforeFilter(Event $event) {
-        
+    public function beforeFilter(Event $event) 
+    {
+        // $params = $this->request->params;
+
+        // pr($params);exit;
     }
 
-    public function beforeRender(Event $event) {
+    public function beforeRender(Event $event) 
+    {
         
     }
 }

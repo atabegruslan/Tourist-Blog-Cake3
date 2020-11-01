@@ -34,6 +34,8 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        $this->addPlugin('AdminPanel');
+
         $this->addPlugin('BootstrapUI');
 
         // Call parent to load bootstrap from files.
