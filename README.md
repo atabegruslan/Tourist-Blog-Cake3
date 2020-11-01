@@ -614,6 +614,33 @@ index.ctp
         <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
 ```
 
+## Admin Backside
+
+To manage users and to assign countries to continents
+
+### Make Plugin
+
+```
+bin/cake bake plugin AdminPanel
+bin/cake bake all continents --plugin AdminPanel
+```
+
+#### Theory: Useful Functions
+
+Controller:
+
+`App\Controller\AppController::beforeFilter(\Cake\Event\Event $event)` 
+
+`App\Controller\AppController::beforeRender(\Cake\Event\Event $event)` 
+
+Model:
+
+`Cake\ORM\Table::beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)`
+
+`Cake\ORM\Table::afterSave(Event $event, EntityInterface $entity, ArrayObject $options)`
+
+https://book.cakephp.org/3/en/orm/saving-data.html#saving-entities
+
 # Todo
 
 - Admin backend via plugin
