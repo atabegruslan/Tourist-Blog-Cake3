@@ -429,8 +429,12 @@ class EntriesTable extends Table
 
 ##### The above `hasOne` example in CakePHP 2:
 
+<table>
+<tr>
+<td>
 Model/Country.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class Country extends AppModel
@@ -442,10 +446,13 @@ class Country extends AppModel
         )
     );
 }
-```
-
+</code>
+</pre>
+</td>
+<td>
 Model/Entry.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class Entry extends AppModel
@@ -457,12 +464,20 @@ class Entry extends AppModel
         ),
     );
 }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 ##### `hasMany` example in CakePHP 3:
 
+<table>
+<tr>
+<td>
 src/Model/Table/UsersTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -475,10 +490,13 @@ class UsersTable extends Table
             'foreignKey' => 'user_id',
         ]);
     }
-```
-
+</code>
+</pre>
+</td>
+<td>
 src/Model/Table/EntriesTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -491,12 +509,20 @@ class EntriesTable extends Table
             'foreignKey' => 'user_id',
         ]);
     }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 ##### `hasMany` example in CakePHP 2:
 
+<table>
+<tr>
+<td>
 Model/User.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class User extends AppModel
@@ -508,10 +534,13 @@ class User extends AppModel
         )
     );
 }
-```
-
+</code>
+</pre>
+</td>
+<td>
 Model/Entry.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class Entry extends AppModel
@@ -523,12 +552,20 @@ class Entry extends AppModel
         ),
     );
 }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 ##### `belongsToMany` example in CakePHP 3:
 
+<table>
+<tr>
+<td>
 src/Model/Table/CountriesTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -543,10 +580,13 @@ class CountriesTable extends Table
             'joinTable' => 'continents_countries',
         ]);
     }
-```
-
+</code>
+</pre>
+</td>
+<td>
 src/Model/Table/ContinentsTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -561,12 +601,20 @@ class ContinentsTable extends Table
             'joinTable' => 'continents_countries',
         ]);
     }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 ##### `hasAndBelongsToMany` example in CakePHP 2:
 
+<table>
+<tr>
+<td>
 Model/Country.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class Country extends AppModel
@@ -580,10 +628,13 @@ class Country extends AppModel
         )
     );
 }
-```
-
+</code>
+</pre>
+</td>
+<td>
 Model/Continent.php
-```php
+<pre>
+<code>
 App::uses('AppModel', 'Model');
 
 class Continent extends AppModel
@@ -597,7 +648,11 @@ class Continent extends AppModel
         ),
     );
 }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 ### 4) Adjust Controller and View
 
