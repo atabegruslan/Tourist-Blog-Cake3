@@ -1,18 +1,20 @@
 <table>
-    <tr>
-        <td>
-            Cake 2
-            <pre>
-saefre
+<tr>
+<td>
+Cake 2
+<pre>
+<code class="language-php">
+namespace App\Model\Table;
 egftretf
-            </pre>
-        </td>
-        <td>
-            Cake 3
-            <pre>
-ddddddddddd
-ffffff
-            </pre>
-        </td>
-    </tr>
+</code>
+</pre>
+</td>
+<td>
+Cake 3
+<code class="language-php">
+namespace App\Model\Table;
+egftretf
+</code>
+</td>
+</tr>
 </table>
