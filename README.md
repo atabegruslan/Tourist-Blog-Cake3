@@ -382,8 +382,12 @@ By either run `bin/cake bake all countries` or seperately:
 
 ### 3) Update the models
 
+<table>
+<tr>
+<td>
 src/Model/Table/CountriesTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -396,10 +400,13 @@ class CountriesTable extends Table
             'foreignKey' => 'country_id',
         ]);
     }
-```
-
+</code>
+</pre>
+</td>
+<td>
 src/Model/Table/EntriesTable.php
-```php
+<pre>
+<code>
 namespace App\Model\Table;
 use Cake\ORM\Table;
 
@@ -412,7 +419,11 @@ class EntriesTable extends Table
             'foreignKey' => 'country_id',
         ]);
     }
-```
+</code>
+</pre>
+</td>
+</tr>
+</table>
 
 #### For completion, these are the remaining cases
 
