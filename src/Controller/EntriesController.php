@@ -66,15 +66,45 @@ class EntriesController extends AppController
     public function add()
     {
         $entry = $this->Entries->newEntity();
-        if ($this->request->is('post')) {
-            $entry = $this->Entries->patchEntity($entry, $this->request->getData());
-            if ($this->Entries->save($entry)) {
+
+        if ($this->request->is('post')) 
+        {
+            $data = $this->request->getData();
+            $image = $data['image'];
+
+            if (!empty($image) && $image['tmp_name'])
+            {
+                if (!preg_match('/image\/*/', $image['type']))
+                {
+                    // error
+                }
+
+                $result = $this->Common->upload_images($image, 'image', 'entry');
+
+                if( isset($result['status']) && ($result['status'] == true) )
+                {
+                    $data['img_url'] = $result['params']['path'];
+                    $data['img_url'] = str_replace("\\",'/',$data['img_url']);
+                    unset($data['image']);
+                }
+                else
+                {
+                    // error
+                }
+            }
+
+            $entry = $this->Entries->patchEntity($entry, $data);
+
+            if ($this->Entries->save($entry)) 
+            {
                 $this->Flash->success(__('The entry has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The entry could not be saved. Please, try again.'));
         }
+
         $users = $this->Entries->Users->find('list', ['limit' => 200]);
         $this->set(compact('entry', 'users'));
     }

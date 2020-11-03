@@ -691,6 +691,136 @@ bin/cake bake plugin AdminPanel
 bin/cake bake all continents --plugin AdminPanel
 ```
 
+If you pull from repository to another computer, you might see that the newly created plugin is causing problems. In that case, run `composer dumpautoload`. 
+
+https://stackoverflow.com/questions/45405478/cakephp-3-error-generator-plugin-cake-core-exception-missingpluginexception
+
+## Custom input fields
+
+### Cake 2
+
+1. Create: `View/Elements/images_upload_customize.ctp`
+
+2. Usage: `echo $this->element('images_upload_customize' $optionsArray);`
+
+https://book.cakephp.org/2/en/views.html#elements
+
+### Cake 3
+
+1. Create: `src/Template/Element/images_upload_customize.ctp`
+
+2. Usage: `echo $this->element('images_upload_customize' $optionsArray);`
+
+https://book.cakephp.org/3/en/views.html#elements
+
+## Custom Components
+
+### Cake 2
+
+<table>
+<tr>
+<td>
+Controller/Component/CommonComponent.php
+<pre>
+<code>
+App::uses('Component', 'Controller');
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
+
+class CommonComponent extends Component 
+{
+    // The other component your component uses
+    // public $components = ['Xxx', 'Yyy'];
+
+    // Execute any other additional setup for your component.
+    // public function initialize(Controller $controller) 
+    // {
+    //  parent::initialize($controller);
+    // 
+    //  if (!class_exists('Xxx'))
+    //  {
+    //      // load vendor classes if does not load before
+    //      App::import('Vendor', 'Xxx');
+    //  }
+    // }
+
+    public function upload_images($image, $subfolder, $prefix = "")
+    {
+    
+    }
+</code>
+</pre>
+</td>
+<td>
+Controller/AppController.php
+<pre>
+<code>
+App::uses('Controller', 'Controller');
+
+class AppController extends Controller 
+{
+    public $components = ['Common'];
+</code>
+</pre>
+</td>
+</tr>
+</table>
+
+### Cake 3
+
+<table>
+<tr>
+<td>
+src/Controller/Component/CommonComponent.php
+<pre>
+<code>
+namespace App\Controller\Component;
+
+use Cake\Controller\Component;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+
+class CommonComponent extends Component
+{
+    // The other component your component uses
+    // public $components = ['Xxx', 'Yyy'];
+
+    // Execute any other additional setup for your component.
+    // public function initialize(array $config)
+    // {
+    //     $this->Xxx->whatever();
+    // }
+
+    public function upload_images($image, $subfolder, $prefix = "")
+    {
+    
+    }
+</code>
+</pre>
+</td>
+<td>
+src/Controller/AppController.php
+<pre>
+<code>
+namespace App\Controller;
+
+use Cake\Controller\Controller;
+
+class AppController extends Controller
+{
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('Common'
+</code>
+</pre>
+</td>
+</tr>
+</table>
+
+https://book.cakephp.org/3/en/controllers/components.html#using-other-components-in-your-component
+
 #### Theory: Useful Functions
 
 Controller:
