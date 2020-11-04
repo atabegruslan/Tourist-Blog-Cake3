@@ -34,7 +34,8 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
-        $this->addPlugin('AdminPanel');
+        $this->addPlugin(\AdminPanel\Plugin::class);
+        //$this->addPlugin(\AdminPanel\Plugin::class, ['routes' => true, 'bootstrap' => true, 'autoload' => true]);
 
         $this->addPlugin('BootstrapUI');
 

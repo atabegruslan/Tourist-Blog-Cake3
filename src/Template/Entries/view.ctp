@@ -27,8 +27,10 @@
             <td><?= h($entry->comments) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Img Url') ?></th>
-            <td><?= h($entry->img_url) ?></td>
+            <th scope="row"><?= __('Image') ?></th>
+            <td>
+                <img src="<?= $this->webroot . 'img/' . $entry->img_url ?>" />
+            </td>
         </tr>
         <tr>
             <th scope="row"><?= __('User') ?></th>

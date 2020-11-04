@@ -695,6 +695,22 @@ If you pull from repository to another computer, you might see that the newly cr
 
 https://stackoverflow.com/questions/45405478/cakephp-3-error-generator-plugin-cake-core-exception-missingpluginexception
 
+### Back Making Admin Backside
+
+1. Follow: https://book.cakephp.org/3/en/plugins.html#plugin-routes
+
+2. Also don't forget in `composer.json`
+```js
+"autoload": {
+    "psr-4": {
+        "App\\": "src/",
+        "AdminPanel\\": "plugins/AdminPanel/src/"
+    }
+},
+````
+
+Other ways of making Admin Backsides: https://github.com/Ruslan-Aliyev/CakePHP_Admin_BackEnds
+
 ## Custom input fields
 
 ### Cake 2

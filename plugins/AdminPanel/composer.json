@@ -1,5 +1,5 @@
 {
-    "name": "your-name-here/AdminPanel",
+    "name": "ruslan/AdminPanel",
     "description": "AdminPanel plugin for CakePHP",
     "type": "cakephp-plugin",
     "license": "MIT",
