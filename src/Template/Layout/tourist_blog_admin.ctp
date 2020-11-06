@@ -124,14 +124,14 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <?= $this->Html->link(__('New Entry'), ['action' => 'add']) ?>
+                    <?= $this->Html->link(__('New Continent'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'add']) ?>
                 </li>
 <!-- 
                 <li class="nav-item">
-                    <?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?>
+                    <?= $this->Html->link(__('List Countries'), ['controller' => 'Countries', 'action' => 'index']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?>
+                    <?= $this->Html->link(__('New Country'), ['controller' => 'Countries', 'action' => 'add']) ?>
                 </li>
  -->
                 <li class="nav-item active">

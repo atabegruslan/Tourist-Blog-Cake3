@@ -36,7 +36,7 @@ class EntriesTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Users', [
+        $this->belongsTo('UAC.Users', [
             'foreignKey' => 'user_id',
         ]);
 

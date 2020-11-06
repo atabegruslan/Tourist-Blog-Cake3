@@ -168,8 +168,7 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 $this->Flash->success(__('Hello ' . $this->Auth->user('name')));   
 
-                //return $this->redirect($this->Auth->redirectUrl());
-                return $this->redirect('/entries/');
+                return $this->redirect($this->Auth->redirectUrl());
             }
 
             $this->Flash->error('Your username or password is incorrect');
@@ -203,8 +202,7 @@ class UsersController extends AppController
                     $this->Auth->setUser($user->toArray());
                     $this->Flash->success(__('Hello ' . $this->Auth->user('name')));
 
-                    //return $this->redirect($this->Auth->redirectUrl());
-                    return $this->redirect('/entries/');
+                    return $this->redirect($this->Auth->redirectUrl());
                 }
                 $this->Flash->error(__('The user has NOT been saved.')); 
             }
@@ -683,7 +681,7 @@ index.ctp
 
 ## Admin Backside
 
-To manage users and to assign countries to continents
+I decided that only admin can manage users and assign countries to continents.
 
 ### Make Plugin
 
@@ -708,9 +706,133 @@ https://stackoverflow.com/questions/45405478/cakephp-3-error-generator-plugin-ca
         "AdminPanel\\": "plugins/AdminPanel/src/"
     }
 },
-````
+```
 
 Other ways of making Admin Backsides: https://github.com/Ruslan-Aliyev/CakePHP_Admin_BackEnds
+
+### Refactor front app's Continents
+
+Now that we have `Continents` in the `AdminPanel` plugin, the `Continents` MVC in the front app is no longer needed.
+
+Before deleting front app's MVC files for `Continents`, we need to refactor the models, so that **AdminPanel's Continents is associated with front app's Countries**.
+
+So edit: `src/Model/Table/CountriesTable.php`
+```php
+$this->belongsToMany('AdminPanel.Continents', [
+    'foreignKey' => 'country_id',
+    'targetForeignKey' => 'continent_id',
+    'joinTable' => 'continents_countries',
+]);
+```
+
+and edit: `plugins/AdminPanel/src/Model/Table/ContinentsTable.php`
+```php
+$this->belongsToMany('Countries', [
+    'foreignKey' => 'continent_id',
+    'targetForeignKey' => 'country_id',
+    'joinTable' => 'continents_countries',
+]);
+```
+
+## Refactor Auth
+
+Now that we have the front app and the back admin-panel in a plugin, the authentication (ie: the user controller which is "stuck" in the front app) needs to be refactored, to make the login/logout work for both front and back.
+
+1. Create a User Accounts plugin
+
+```
+bin/cake bake plugin UAC
+bin/cake bake all users --plugin UAC
+```
+
+Note: Only now did I notice the message:
+```
+Action required!
+
+The CakePHP plugin installer v1.3+ no longer requires the
+"post-autoload-dump" hook. Please update your app's composer.json
+file and remove usage of
+Cake\Composer\Installer\PluginInstaller::postAutoloadDump
+```
+
+Therefore, rid this line `"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",` from the `scripts": {}` section of `composer.json`.
+
+2. Edit `composer.json`
+```js
+"autoload": {
+    "psr-4": {
+        "App\\": "src/",
+        "AdminPanel\\": "plugins/AdminPanel/src/",
+        "UAC\\": "plugins/UAC/src/"
+    }
+},
+```
+
+`composer dumpautoload`
+
+3. `src/Application.php`
+
+```php
+class Application extends BaseApplication
+{
+    public function bootstrap()
+    {
+        $this->addPlugin("UAC");
+```
+
+4. Move the `beforeFilter`, `login`, `logout` & `register` functions from `src/Controller/UsersController.php` to `plugins/UAC/src/Controller/UsersController.php`. We will not be using `src/Controller/UsersController.php` anymore once all this is refactored.
+
+5. `src/Controller/AppController.php`
+
+```php
+class AppController extends Controller
+{
+    public function initialize()
+    {
+        //...
+        $this->loadComponent('Auth', [
+            //...
+            'loginAction' => [
+                'plugin' => 'UAC', // <- ADD THIS !!!
+                'controller' => 'Users',
+                'action' => 'login'
+            ]
+        ]);
+```
+
+6. Now the logout link will be `<?= $this->Html->link(__('Logout'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'logout']) ?>` instead of `<?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>`. So refactor that for everywhere it's used.
+
+7. Now refactor all the `src/Model/Tables` where `Users` is associated (in this case, just `src/Model/Tables/EntriesTable.php`). Make it so that the **front app's Entries is connected to UAC plugin's Users**. 
+
+So edit: `src/Model/Tables/EntriesTable.php`
+```php
+$this->belongsTo('UAC.Users', [
+    'foreignKey' => 'user_id',
+]);
+```
+
+and: `plugins/UAC/src/Model/Table/UsersTable.php`
+```php
+$this->hasMany('Entries', [
+    'foreignKey' => 'user_id',
+]);
+```
+
+Also move `login.ctp` & `register.ctp` from `src/Template/Users/` to `plugins/UAC/src/Template/Users/`, and add `'plugin' => 'UAC'` into the reverse routes of login and register.
+
+Only after that you can delete `User`'s MVC files from `src/`.
+
+## Master Layouts
+
+Recall that we used `friendsofcake\bootstrap-ui`. After that, the default master layout will be `\vendor\friendsofcake\bootstrap-ui\src\Template\Layout\default.ctp`. 
+
+But if you want your own custom master layout:
+
+1. Make custom layout `src\Template\Layout\tourist_blog.ctp`
+
+2. In `src/Controller/AppController.php`, `beforeFilter` function, write: `$this->layout = "tourist_blog";`
+
+3. If you want the admin backside to use a different layout, then create another layout `src\Template\Layout\tourist_blog_admin.ctp` and in `plugins/AdminPanel/src/Controller/AppController.php`, `beforeFilter` function, write: `$this->layout = "tourist_blog_admin";`
 
 ## Custom input fields
 

@@ -92,6 +92,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->scope('/admin', function ($routes) {
         $routes->loadPlugin('AdminPanel'); // http://{domain}/admin-panel/continents
+        //$routes->connect('/', ['controller' => 'Continents', 'action' => 'index', 'plugin' => 'AdminPanel']);
     });
 });
 

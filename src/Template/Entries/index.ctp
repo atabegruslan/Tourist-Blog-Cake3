@@ -6,7 +6,7 @@
 
 use Cake\Utility\Hash;
 
-// $this->layout = 'tourist_blog';
+// $this->layout = 'tourist_blog'; // Override controller layout setting
 
 ?>
 

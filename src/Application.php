@@ -20,6 +20,8 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use AdminPanel\Plugin as AdminPanel;
+use UAC\Plugin as UAC;
 
 /**
  * Application setup class.
@@ -34,8 +36,10 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
-        $this->addPlugin(\AdminPanel\Plugin::class);
+        $this->addPlugin(AdminPanel::class);
         //$this->addPlugin(\AdminPanel\Plugin::class, ['routes' => true, 'bootstrap' => true, 'autoload' => true]);
+
+        $this->addPlugin(UAC::class);
 
         $this->addPlugin('BootstrapUI');
 

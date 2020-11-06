@@ -55,6 +55,7 @@ class AppController extends Controller
                 ]
             ],
             'loginAction' => [
+                'plugin' => 'UAC',
                 'controller' => 'Users',
                 'action' => 'login'
             ]

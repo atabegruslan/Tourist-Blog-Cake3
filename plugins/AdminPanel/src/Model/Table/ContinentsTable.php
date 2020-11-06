@@ -40,7 +40,6 @@ class ContinentsTable extends Table
             'foreignKey' => 'continent_id',
             'targetForeignKey' => 'country_id',
             'joinTable' => 'continents_countries',
-            'className' => 'AdminPanel.Countries',
         ]);
     }
 

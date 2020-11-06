@@ -40,7 +40,7 @@ class CountriesTable extends Table
             'foreignKey' => 'country_id',
         ]);
 
-        $this->belongsToMany('Continents', [
+        $this->belongsToMany('AdminPanel.Continents', [
             'foreignKey' => 'country_id',
             'targetForeignKey' => 'continent_id',
             'joinTable' => 'continents_countries',

@@ -4,17 +4,7 @@
  * @var \Cake\Datasource\EntityInterface $continent
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Continent'), ['action' => 'edit', $continent->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Continent'), ['action' => 'delete', $continent->id], ['confirm' => __('Are you sure you want to delete # {0}?', $continent->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Continents'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Continent'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Countries'), ['controller' => 'Countries', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Country'), ['controller' => 'Countries', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+
 <div class="continents view large-9 medium-8 columns content">
     <h3><?= h($continent->name) ?></h3>
     <table class="vertical-table">

@@ -88,4 +88,61 @@ class CommonComponent extends Component
             'params' => $params
         );
     }
+
+    public function upload_file( $image, $relative_upload_folder, $image_name_suffix = "" ){
+        $message = 'File is null';
+        $params = array();
+        if( isset($image) && !empty($image) ){
+            //$upload_folder = WWW_ROOT . 'file/';
+            $upload_folder = WWW_ROOT . 'file' . DS;
+
+            if( isset($relative_upload_folder) && !empty($relative_upload_folder) ){
+                $upload_folder .= $relative_upload_folder;
+            } else {
+                $upload_folder .= '';
+            }
+
+            $folder = new Folder($upload_folder, true, 0777);
+
+            if( $folder ){
+                try{
+                    $file = new File( $image['name'] );
+                    // rename the uploaded file
+                    $renamed_file = $image_name_suffix . '-' . date('YmdHis') . '.' . $file->ext();
+                    // set the full path of uploaded file name
+                    $renamed_file_full_path = $upload_folder . DS . $renamed_file;
+
+                    move_uploaded_file($image['tmp_name'], $renamed_file_full_path);
+                    chmod($renamed_file_full_path, 0777);
+                    
+                    return array(
+                        'status' => true, 
+                        'params' => array(
+                            'ori_name' => $image['name'],
+                            're_name' => $renamed_file,
+                            'path' => $relative_upload_folder . DS . $renamed_file
+                        )
+                    );
+                } catch(Exception $e) {
+                    $message = 'Upload file failed. ' . $e->getMessage();
+                    $params = array(
+                        're_name' => $renamed_file,
+                        'folder_path' => $upload_folder,
+                        'path' => $relative_upload_folder . DS . $renamed_file
+                    );
+                }
+            } else {
+                $message = 'Fail to create folder.';
+                $params = array(
+                    'folder_path' => $upload_folder,
+                );
+            }
+        }
+
+        return array(
+            'status' => false, 
+            'message' => $message,
+            'params' => $params
+        );
+    }
 }

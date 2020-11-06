@@ -100,46 +100,13 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
-<!-- 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
- -->
     </head>
 
     <?php
     echo $this->fetch('tb_body_start');
     echo $this->fetch('tb_flash');
     ?>
-
-    <nav class="navbar navbar-light">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <?= $this->Html->link(__('New Entry'), ['action' => 'add']) ?>
-                </li>
-<!-- 
-                <li class="nav-item">
-                    <?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?>
-                </li>
-                <li class="nav-item">
-                    <?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?>
-                </li>
- -->
-                <li class="nav-item active">
-                    <?= $this->Html->link(__('Logout'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'logout']) ?>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container-fluid">
     <?php echo $this->fetch('content'); ?>
