@@ -30,6 +30,7 @@ class Entry extends Entity
         'place' => true,
         'comments' => true,
         'img_url' => true,
+        'vid_url' => true,
         'user_id' => true,
         'country_id' => true,
         'time' => true,

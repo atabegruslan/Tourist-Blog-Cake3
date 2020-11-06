@@ -978,11 +978,8 @@ https://book.cakephp.org/3/en/orm/saving-data.html#saving-entities
 
 # Todo
 
-- Admin backend via plugin
 - Crontab
 - Locale
 - APIs
-- Input dropmenu, images, videos, custom input fields
 - Filters, sort by column
-- IO Excel/CSV, Filter
-- Looks: fa glyphicons, use BS nav for topbar, ...
+- IO Excel/CSV

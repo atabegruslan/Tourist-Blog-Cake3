@@ -19,7 +19,7 @@
         <tr>
             <th scope="row"><?= __('Image') ?></th>
             <td>
-                <img src="<?= $this->webroot . 'img/' . $entry->img_url ?>" />
+                <!-- <img src="<?= $this->webroot . 'img/' . $entry->img_url ?>" /> -->
             </td>
         </tr>
         <tr>

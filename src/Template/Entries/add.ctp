@@ -18,6 +18,11 @@
                 'label' => "Image",
             ));
 
+            echo $this->Form->control('video', ['type' => 'file']);
+            // echo $this->Form->input('video', ['type' => 'file', 'class' => 'form-control']);
+
+            echo $this->Form->control('country_id', ['options' => $countries, 'empty' => true]);
+
             echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
             echo $this->Form->control('time');
         ?>

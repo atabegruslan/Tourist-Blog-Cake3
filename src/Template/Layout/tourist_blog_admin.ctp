@@ -126,14 +126,14 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
                 <li class="nav-item">
                     <?= $this->Html->link(__('New Continent'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'add']) ?>
                 </li>
-<!-- 
+
                 <li class="nav-item">
-                    <?= $this->Html->link(__('List Countries'), ['controller' => 'Countries', 'action' => 'index']) ?>
+                    <?= $this->Html->link(__('List Users'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'index']) ?>
                 </li>
                 <li class="nav-item">
-                    <?= $this->Html->link(__('New Country'), ['controller' => 'Countries', 'action' => 'add']) ?>
+                    <?= $this->Html->link(__('New User'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'add']) ?>
                 </li>
- -->
+
                 <li class="nav-item active">
                     <?= $this->Html->link(__('Logout'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'logout']) ?>
                 </li>

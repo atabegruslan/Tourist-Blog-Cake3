@@ -70,28 +70,9 @@ class EntriesController extends AppController
         if ($this->request->is('post')) 
         {
             $data = $this->request->getData();
-            $image = $data['image'];
 
-            if (!empty($image) && $image['tmp_name'])
-            {
-                if (!preg_match('/image\/*/', $image['type']))
-                {
-                    // error
-                }
-
-                $result = $this->Common->upload_images($image, 'image', 'entry');
-
-                if( isset($result['status']) && ($result['status'] == true) )
-                {
-                    $data['img_url'] = $result['params']['path'];
-                    $data['img_url'] = str_replace("\\",'/',$data['img_url']);
-                    unset($data['image']);
-                }
-                else
-                {
-                    // error
-                }
-            }
+            $this->upload_image($data);
+            $this->upload_video($data);
 
             $entry = $this->Entries->patchEntity($entry, $data);
 
@@ -105,8 +86,58 @@ class EntriesController extends AppController
             $this->Flash->error(__('The entry could not be saved. Please, try again.'));
         }
 
-        $users = $this->Entries->Users->find('list', ['limit' => 200]);
-        $this->set(compact('entry', 'users'));
+        $users = $this->Entries->Users->find('list'/* , ['limit' => 200] */);
+        $countries = $this->Entries->Countries->find('list');
+
+        $this->set(compact('entry', 'users', 'countries'));
+    }
+
+    private function upload_image(&$data)
+    {
+        if (!empty($data['image']) && $data['image']['tmp_name'])
+        {
+            if (!preg_match('/image\/*/', $data['image']['type']))
+            {
+                // error
+            }
+
+            $result = $this->Common->upload_images($data['image'], 'image', 'entry');
+
+            if( isset($result['status']) && ($result['status'] == true) )
+            {
+                $data['img_url'] = $result['params']['path'];
+                $data['img_url'] = str_replace("\\",'/',$data['img_url']);
+                unset($data['image']);
+            }
+            else
+            {
+                // error
+            }
+        }
+    }
+    private function upload_video(&$data)
+    {
+        if (!empty($data['video']) && $data['video']['tmp_name'])
+        {
+            if (!preg_match('/video\/*/', $data['video']['type']))
+            {
+                // error
+                pr('not vid type');exit;
+            }
+
+            $result = $this->Common->upload_file($data['video'], 'video', 'entry');
+
+            if( isset($result['status']) && ($result['status'] == true) )
+            {
+                $data['vid_url'] = $result['params']['path'];
+                $data['vid_url'] = str_replace("\\",'/',$data['vid_url']);
+                unset($data['video']);
+            }
+            else
+            {
+                // error
+            }
+        }
     }
 
     /**

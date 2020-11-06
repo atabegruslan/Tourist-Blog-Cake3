@@ -75,6 +75,11 @@ class EntriesTable extends Table
             ->allowEmptyString('img_url');
 
         $validator
+            ->scalar('vid_url')
+            ->maxLength('vid_url', 500)
+            ->allowEmptyString('vid_url');
+
+        $validator
             ->dateTime('time')
             ->notEmptyDateTime('time');
 
