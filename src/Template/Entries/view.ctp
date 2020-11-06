@@ -19,12 +19,24 @@
         <tr>
             <th scope="row"><?= __('Image') ?></th>
             <td>
-                <!-- <img src="<?= $this->webroot . 'img/' . $entry->img_url ?>" /> -->
+                <img src="<?= $webroot . 'img/' . $entry->img_url ?>" />
             </td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Video') ?></th>
+            <td>
+                <video width="320" height="240" controls>
+                    <source src="<?= $webroot . 'file/' . $entry->vid_url ?>">
+                </video>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Country') ?></th>
+            <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
+            <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

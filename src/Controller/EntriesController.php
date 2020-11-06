@@ -52,10 +52,11 @@ class EntriesController extends AppController
     public function view($id = null)
     {
         $entry = $this->Entries->get($id, [
-            'contain' => ['Users'],
+            'contain' => ['Users', 'Countries' => ['Continents']],
         ]);
 
         $this->set('entry', $entry);
+        $this->set('webroot', $this->webroot);
     }
 
     /**

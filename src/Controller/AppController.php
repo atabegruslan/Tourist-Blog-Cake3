@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -74,7 +75,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event) 
     {
-        //$this->webroot = Environment::read('web.url_img');
+        $this->webroot = Configure::read('App.devBaseUrl');
         $this->layout = "tourist_blog";
     }
 
