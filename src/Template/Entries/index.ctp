@@ -6,24 +6,9 @@
 
 use Cake\Utility\Hash;
 
-?>
+// $this->layout = 'tourist_blog';
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <?= $this->Html->link(__('New Entry'), ['action' => 'add']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?>
-        </li>
-        <li class="nav-item">
-            <?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?>
-        </li>
-        <li class="nav-item active">
-            <?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?>
-        </li>
-    </ul>
-</nav>
+?>
 
 <div class="entries index large-9 medium-8 columns content">
     <h3><?= __('Entries') ?></h3>

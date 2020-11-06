@@ -63,13 +63,14 @@ Create DB `tourist_blog.sql`
 
 ### Note: Naming conventions:
 
-|     |     |
+|     | Cake 3 | Cake 2 |
 | --- | --- |
-| Database Table | entries |
-| Model class | src/Model/Entry.php |
-| Controller class | src/Controller/EntryController.php |
-| View template | src/Template/Entries/(CRUD).ctp |
-| URL | {domain-name}/tourist_blog/entries/ |
+| Database Table | entries | entries |
+| X-Ref Table | entries_somethings | entries_somethings |
+| Model class | src/Model/Entry.php | Model/Entry.php |
+| Controller class | src/Controller/EntryController.php | Controller/EntriesController.php |
+| View template | src/Template/Entries/(CRUD).ctp | View/Entries/(CRUD).ctp |
+| URL | {domain-name}/tourist_blog/entries/ | {domain-name}/tourist_blog/entries/ |
 
 ## Scaffold
 
@@ -863,4 +864,3 @@ https://book.cakephp.org/3/en/orm/saving-data.html#saving-entities
 - Filters, sort by column
 - IO Excel/CSV, Filter
 - Looks: fa glyphicons, use BS nav for topbar, ...
-- Notes on: contain/join, beforeFilter & beforeRender ... , model relations

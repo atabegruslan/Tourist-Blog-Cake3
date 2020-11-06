@@ -74,6 +74,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event) 
     {
         //$this->webroot = Environment::read('web.url_img');
+        $this->layout = "tourist_blog";
     }
 
     public function beforeRender(Event $event) 
