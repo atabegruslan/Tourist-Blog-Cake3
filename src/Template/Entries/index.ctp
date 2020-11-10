@@ -19,9 +19,8 @@ use Cake\Utility\Hash;
     <table class="table" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('id') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('place') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('comments') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('time') ?></th>
                 <th scope="col"><?= __('country') ?></th>
@@ -32,10 +31,9 @@ use Cake\Utility\Hash;
         <tbody>
             <?php foreach ($entries as $entry): ?>
             <tr>
-                <td><?= $this->Number->format($entry->id) ?></td>
+                <!-- <td><?= $this->Number->format($entry->id) ?></td> -->
                 <td><?= h($entry->place) ?></td>
-                <td><?= h($entry->comments) ?></td>
-                <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
+                <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
                 <td><?= h($entry->time) ?></td>
                 <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
                 <td><?= $entry->has('country') && $entry->country->has('continents') ? implode(', ', Hash::extract($entry->country->continents, '{n}.name')) : '' ?></td>                

@@ -11,7 +11,6 @@ $this->layout = 'uac';
 <?= $this->Form->control('email'); ?>
 <?= $this->Form->control('password', array('type' => 'password')); ?>
 <?= $this->Form->control('password_confirm', array('type' => 'password')); ?>
-<?= $this->Form->control('Signup', ['type' => 'submit']); ?>
+<?= $this->Form->button('Signup', ['type' => 'submit']); ?>
+<?= $this->Html->link(__('Login'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-default',]) ?>
 <?= $this->Form->end(); ?>
-
-<?= $this->Html->link(__('Login'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'login']) ?>

@@ -9,7 +9,6 @@ $this->layout = 'uac';
 <?= $this->Form->create(); ?>
 <?= $this->Form->control('email'); ?>
 <?= $this->Form->control('password'); ?>
-<?= $this->Form->control('Login', ['type' => 'submit']); ?>
+<?= $this->Form->button('Login', ['type' => 'submit']); ?>
+<?= $this->Html->link(__('Register'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'register'], ['class' => 'btn btn-default',]) ?>
 <?= $this->Form->end(); ?>
-
-<?= $this->Html->link(__('Register'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'register']) ?>

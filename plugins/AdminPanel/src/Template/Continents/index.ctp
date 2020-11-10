@@ -10,7 +10,6 @@
     <table class="table" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -18,7 +17,6 @@
         <tbody>
             <?php foreach ($continents as $continent): ?>
             <tr>
-                <td><?= $this->Number->format($continent->id) ?></td>
                 <td><?= h($continent->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $continent->id]) ?>
