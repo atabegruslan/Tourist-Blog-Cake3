@@ -27,7 +27,7 @@
         ?>
         <div class="<?= isset($is_inline) && $is_inline ? 'col-xs-7' : 'col-xs-12' ?>">
             <?php if(isset($img_review_url) && is_string($img_review_url)){ ?>
-                <img class="img-responsive img-review" src="<?= $this->webroot . 'img/' . $img_review_url ?>"/>
+                <img class="img-responsive img-review" src="<?= $webroot . 'img/' . $img_review_url ?>"/>
             <?php } else { ?>
                 <img class="img-responsive img-review"/>
             <?php } ?>

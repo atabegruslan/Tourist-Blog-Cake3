@@ -177,7 +177,9 @@ class EntriesController extends AppController
             $this->Flash->error(__('The entry could not be saved. Please, try again.'));
         }
         $users = $this->Entries->Users->find('list', ['limit' => 200]);
-        $this->set(compact('entry', 'users'));
+
+        $webroot = $this->webroot;
+        $this->set(compact('entry', 'users', 'webroot'));
     }
 
     /**

@@ -33,7 +33,7 @@ use Cake\Utility\Hash;
             <tr>
                 <!-- <td><?= $this->Number->format($entry->id) ?></td> -->
                 <td><?= h($entry->place) ?></td>
-                <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
+                <td><?= $entry->has('user') ? ( ($entry->user->id === 1) ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : $entry->user->name ) : '' ?></td>
                 <td><?= h($entry->time) ?></td>
                 <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
                 <td><?= $entry->has('country') && $entry->country->has('continents') ? implode(', ', Hash::extract($entry->country->continents, '{n}.name')) : '' ?></td>                
