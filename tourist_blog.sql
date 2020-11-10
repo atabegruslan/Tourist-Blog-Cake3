@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 11:28 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.22
+-- Хост: 127.0.0.1
+-- Время создания: Ноя 10 2020 г., 22:06
+-- Версия сервера: 10.4.8-MariaDB
+-- Версия PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tourist_blog`
+-- База данных: `tourist_blog`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `continents`
+-- Структура таблицы `continents`
 --
 
 CREATE TABLE `continents` (
@@ -33,39 +34,67 @@ CREATE TABLE `continents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `continents`
+-- Дамп данных таблицы `continents`
 --
 
 INSERT INTO `continents` (`id`, `name`) VALUES
-(1, 'Eurasia'),
-(2, 'Africa'),
-(3, 'Americas'),
-(4, 'Oceania'),
-(5, 'Antarctica');
+(1, 'Asia'),
+(2, 'Europe'),
+(3, 'Australasia'),
+(4, 'Africa'),
+(5, 'North America');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `continents_countries`
+-- Структура таблицы `continents_countries`
 --
 
 CREATE TABLE `continents_countries` (
+  `id` int(10) UNSIGNED NOT NULL,
   `continent_id` int(10) UNSIGNED NOT NULL,
   `country_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `continents_countries`
+-- Дамп данных таблицы `continents_countries`
 --
 
-INSERT INTO `continents_countries` (`continent_id`, `country_id`) VALUES
-(2, 1),
-(3, 1);
+INSERT INTO `continents_countries` (`id`, `continent_id`, `country_id`) VALUES
+(1, 1, 1),
+(2, 1, 15),
+(3, 1, 43),
+(4, 1, 60),
+(5, 1, 95),
+(6, 1, 96),
+(7, 1, 97),
+(8, 1, 98),
+(9, 1, 175),
+(10, 2, 15),
+(11, 2, 80),
+(12, 2, 107),
+(13, 2, 139),
+(14, 2, 175),
+(15, 2, 200),
+(16, 3, 13),
+(17, 3, 68),
+(18, 3, 96),
+(19, 3, 149),
+(20, 3, 150),
+(21, 3, 164),
+(22, 4, 36),
+(23, 4, 40),
+(24, 4, 46),
+(25, 4, 60),
+(26, 4, 62),
+(27, 4, 65),
+(28, 5, 37),
+(29, 5, 80);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Структура таблицы `countries`
 --
 
 CREATE TABLE `countries` (
@@ -75,7 +104,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `countries`
+-- Дамп данных таблицы `countries`
 --
 
 INSERT INTO `countries` (`id`, `name`, `slug`) VALUES
@@ -320,7 +349,7 @@ INSERT INTO `countries` (`id`, `name`, `slug`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entries`
+-- Структура таблицы `entries`
 --
 
 CREATE TABLE `entries` (
@@ -335,30 +364,16 @@ CREATE TABLE `entries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `entries`
+-- Дамп данных таблицы `entries`
 --
 
 INSERT INTO `entries` (`id`, `place`, `comments`, `img_url`, `vid_url`, `user_id`, `time`, `country_id`) VALUES
-(1, 'trfd', 'efds', 'ewfd', NULL, 1, '2020-10-25 14:59:00', 1),
-(2, 'ewdse', 'fdewf', 'efrew1', NULL, 1, '2020-10-25 14:59:03', 2),
-(3, 'tfjh', 'yjxg', 'uploads/image/entry-202011031003422201.jpg', NULL, 1, '2020-11-03 09:42:00', NULL),
-(4, 'yyyyy', 'yyyyy', 'uploads/image/entry-202011031020192920.jpg', NULL, 1, '2020-11-03 10:20:00', NULL),
-(5, 'zzzz', 'zzzz', 'uploads/image/entry-202011031023354906.jpg', NULL, 1, '2020-11-03 10:23:00', NULL),
-(6, 'qqqq', 'qqqqq', 'uploads/image/entry-202011060831593195.jpg', NULL, 1, '2020-11-06 08:31:00', NULL),
-(7, 'zzzzzzzz', 'zzzzzzzz', 'uploads/image/entry-20201106083409641.jpg', NULL, 1, '2020-11-06 08:33:00', NULL),
-(8, 'sdgf', 'esgdf', 'uploads/image/entry-202011061011131427.jpg', NULL, 1, '2020-11-06 10:02:00', NULL),
-(9, 'sgfe', 'rsdg', 'uploads/image/entry-202011061014262359.jpg', NULL, 1, '2020-11-06 10:14:00', NULL),
-(10, 'WResfd', 'rwegdf', NULL, NULL, 1, '2020-11-06 10:17:00', NULL),
-(11, 'ef', 'esfd', 'uploads/image/entry-2020110610181512.bmp', NULL, 1, '2020-11-06 10:17:00', NULL),
-(12, 'RFGv', 'regfv', 'uploads/image/entry-202011061023102016.bmp', NULL, 1, '2020-11-06 10:19:00', NULL),
-(13, 'sdg', 'rg', NULL, NULL, 1, '2020-11-06 10:23:00', NULL),
-(14, 'ewdse', 'fdewf', NULL, NULL, 1, '2020-11-06 10:27:00', 17),
-(15, 'ttttttt', 'ttttttt', 'uploads/image/entry-202011061028122814.bmp', 'video/entry-20201106102812.mp4', 1, '2020-11-06 10:27:00', 18);
+(1, 'Mardin', 'City on a slope', 'uploads/image/entry-202011101453224650.jpg', NULL, 1, '2020-11-10 14:53:22', 218);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
@@ -375,31 +390,38 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `type`, `sid`) VALUES
-(1, 'ruslan', 'ruslan_aliyev_@hotmail.com', NULL, '$2y$10$9frqqvU4S.gf4NupEV8Sz.ZOguwrIgyDBpMEFfq7O6plOvFs60zTy', NULL, NULL, NULL, 'normal', NULL);
+(1, 'ruslan', 'ruslan_aliyev_@hotmail.com', NULL, '$2y$10$9frqqvU4S.gf4NupEV8Sz.ZOguwrIgyDBpMEFfq7O6plOvFs60zTy', NULL, NULL, NULL, 'normal', NULL),
+(2, 'Test', 'steppe.ego@gmail.com', NULL, 'blahblah', NULL, NULL, NULL, 'normal', NULL);
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `continents`
+-- Индексы таблицы `continents`
 --
 ALTER TABLE `continents`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `countries`
+-- Индексы таблицы `continents_countries`
+--
+ALTER TABLE `continents_countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
--- Indexes for table `entries`
+-- Индексы таблицы `entries`
 --
 ALTER TABLE `entries`
   ADD PRIMARY KEY (`id`),
@@ -407,45 +429,51 @@ ALTER TABLE `entries`
   ADD KEY `country_entry` (`country_id`);
 
 --
--- Indexes for table `users`
+-- Индексы таблицы `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `continents`
+-- AUTO_INCREMENT для таблицы `continents`
 --
 ALTER TABLE `continents`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT для таблицы `continents_countries`
+--
+ALTER TABLE `continents_countries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT для таблицы `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 
 --
--- AUTO_INCREMENT for table `entries`
+-- AUTO_INCREMENT для таблицы `entries`
 --
 ALTER TABLE `entries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `entries`
+-- Ограничения внешнего ключа таблицы `entries`
 --
 ALTER TABLE `entries`
   ADD CONSTRAINT `country_entry` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`),

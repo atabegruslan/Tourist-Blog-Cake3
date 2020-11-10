@@ -124,6 +124,9 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
+                    <?= $this->Html->link(__('Continents'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'index']) ?>
+                </li>
+                <li class="nav-item">
                     <?= $this->Html->link(__('New Continent'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'add']) ?>
                 </li>
 

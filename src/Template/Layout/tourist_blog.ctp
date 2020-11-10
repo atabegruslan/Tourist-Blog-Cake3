@@ -124,6 +124,9 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
+                    <?= $this->Html->link(__('Entries'), ['controller' => 'Entries', 'action' => 'index']) ?>
+                </li>
+                <li class="nav-item">
                     <?= $this->Html->link(__('New Entry'), ['controller' => 'Entries', 'action' => 'add']) ?>
                 </li>
 
