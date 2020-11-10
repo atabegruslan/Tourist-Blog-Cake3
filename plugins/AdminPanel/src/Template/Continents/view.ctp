@@ -14,17 +14,15 @@
         <table class="table">
             <tr>
                 <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Slug') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($continent->countries as $countries): ?>
             <tr>
                 <td><?= h($countries->name) ?></td>
-                <td><?= h($countries->slug) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'view', $countries->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Countries', 'action' => 'edit', $countries->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Countries', 'action' => 'delete', $countries->id], ['confirm' => __('Are you sure you want to delete # {0}?', $countries->id)]) ?>
+                    <?= $this->Html->link(__('Edit'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'edit', $countries->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'delete', $countries->id], ['confirm' => __('Are you sure you want to delete # {0}?', $countries->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

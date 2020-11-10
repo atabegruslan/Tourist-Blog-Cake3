@@ -7,7 +7,7 @@
 
 <div class="entries view large-9 medium-8 columns content">
     <h3><?= h($entry->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table vertical-table">
         <tr>
             <th scope="row"><?= __('Place') ?></th>
             <td><?= h($entry->place) ?></td>
@@ -37,10 +37,6 @@
         <tr>
             <th scope="row"><?= __('User') ?></th>
             <td><?= $entry->has('user') ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($entry->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Time') ?></th>

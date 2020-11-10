@@ -99,10 +99,12 @@ class EntriesController extends AppController
             $this->Flash->error(__('The entry could not be saved. Please, try again.'));
         }
 
-        $users = $this->Entries->Users->find('list'/* , ['limit' => 200] */);
+        // $users = $this->Entries->Users->find('list'/* , ['limit' => 200] */);
+        $user_id = $this->Auth->user('id');
+
         $countries = $this->Entries->Countries->find('list');
 
-        $this->set(compact('entry', 'users', 'countries'));
+        $this->set(compact('entry', /*'users', */'user_id', 'countries'));
     }
 
     private function upload_image(&$data)
