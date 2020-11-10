@@ -10,6 +10,10 @@ use Cake\Utility\Hash;
 
 ?>
 
+<?= $this->element('entry_filter', [
+    'filter_data' => $filter_data
+]); ?>
+
 <div class="entries index large-9 medium-8 columns content">
     <h3><?= __('Entries') ?></h3>
     <table class="table" cellpadding="0" cellspacing="0">
@@ -20,8 +24,8 @@ use Cake\Utility\Hash;
                 <th scope="col"><?= $this->Paginator->sort('comments') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('time') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('country') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('continent') ?></th>
+                <th scope="col"><?= __('country') ?></th>
+                <th scope="col"><?= __('continent') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>

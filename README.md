@@ -981,5 +981,4 @@ https://book.cakephp.org/3/en/orm/saving-data.html#saving-entities
 - Crontab
 - Locale
 - APIs
-- Filters, sort by column
 - IO Excel/CSV

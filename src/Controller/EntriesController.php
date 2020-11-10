@@ -19,6 +19,15 @@ class EntriesController extends AppController
      */
     public function index()
     {
+        // Filter
+        $filter_data = $this->request->query;
+        $conditions = [];
+
+        foreach ($filter_data as $key => $value) 
+        {
+            $conditions[] = 'entries.'.$key." like '%".$value."%' ";
+        }
+
         // Paginate the ORM table:
         // $this->paginate = [
         //     'contain' => ['Users', 'Countries' => ['Continents']],
@@ -32,7 +41,8 @@ class EntriesController extends AppController
 
         // Paginate a query:
         $option = [
-            'contain' => ['Users', 'Countries' => ['Continents']]
+            'contain' => ['Users', 'Countries' => ['Continents']],
+            'conditions' => $conditions,
         ];
 
         //$entries = $this->Entries->find('all', $option)->toArray(); 
@@ -40,6 +50,8 @@ class EntriesController extends AppController
         $entries = $this->Entries->find('all', $option);
 
         $this->set('entries', $this->paginate($entries));
+
+        $this->set(compact('filter_data'));
     }
 
     /**
