@@ -16,6 +16,7 @@ class AppController extends BaseController
 	        );
     	}
 
-        $this->layout = "tourist_blog_admin";
+
+        $this->viewBuilder()->setLayout("tourist_blog_admin");
     }
 }
