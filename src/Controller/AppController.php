@@ -75,7 +75,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event) 
     {
-        $this->webroot = Configure::read('App.devBaseUrl');
+        $this->webroot = Configure::read('App.BaseUrl');
         $this->layout = "tourist_blog";
     }
 
