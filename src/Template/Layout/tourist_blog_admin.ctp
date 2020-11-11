@@ -100,6 +100,8 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
+
+        <?= $this->Html->css('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
 <!-- 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 
@@ -110,8 +112,6 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
  -->
     </head>
 
@@ -135,6 +135,10 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
                 </li>
                 <li class="nav-item">
                     <?= $this->Html->link(__('New User'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'add']) ?>
+                </li>
+
+                <li class="nav-item">
+                    <?= $this->Html->link(__('Front Site'), ['plugin' => null, 'controller' => 'Entries', 'action' => 'index']) ?>
                 </li>
 
                 <li class="nav-item active">

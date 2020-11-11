@@ -23,14 +23,13 @@ $this->layout = 'tourist_blog_admin';
         <tbody>
             <?php foreach ($users as $user): ?>
             <tr>
-                <td><?= h($user->name) ?></td>
+                <td><?= $this->Html->link(h($user->name), ['action' => 'view', $user->id]) ?></td>
                 <td><?= h($user->email) ?></td>
                 <td><?= h($user->created_at) ?></td>
                 <td><?= h($user->updated_at) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['action' => 'edit', $user->id], ['escape' => false, 'class' => 'btn btn-primary',]) ?>
+                    <?= $this->Form->postLink('<span class="fa fa-trash"></span>', ['action' => 'delete', $user->id], ['escape' => false, 'class' => 'btn btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

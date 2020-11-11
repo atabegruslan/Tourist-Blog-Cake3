@@ -100,11 +100,10 @@ class EntriesController extends AppController
         }
 
         // $users = $this->Entries->Users->find('list'/* , ['limit' => 200] */);
-        $user_id = $this->Auth->user('id');
 
         $countries = $this->Entries->Countries->find('list');
 
-        $this->set(compact('entry', /*'users', */'user_id', 'countries'));
+        $this->set(compact('entry', /*'users', */'countries'));
     }
 
     private function upload_image(&$data)

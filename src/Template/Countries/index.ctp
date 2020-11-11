@@ -17,11 +17,10 @@
         <tbody>
             <?php foreach ($countries as $country): ?>
             <tr>
-                <td><?= h($country->name) ?></td>
+                <td><?= $this->Html->link(h($country->name), ['action' => 'view', $country->id]) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $country->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $country->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $country->id], ['confirm' => __('Are you sure you want to delete # {0}?', $country->id)]) ?>
+                    <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['action' => 'edit', $country->id], ['escape' => false, 'class' => 'btn btn-primary']) ?>
+                    <?= $this->Form->postLink('<span class="fa fa-trash"></span>', ['action' => 'delete', $country->id], ['escape' => false, 'class' => 'btn btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $country->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

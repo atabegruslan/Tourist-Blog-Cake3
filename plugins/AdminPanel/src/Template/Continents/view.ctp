@@ -18,11 +18,10 @@
             </tr>
             <?php foreach ($continent->countries as $countries): ?>
             <tr>
-                <td><?= h($countries->name) ?></td>
+                <td><?= $this->Html->link(h($countries->name), ['plugin' => null, 'controller' => 'Countries', 'action' => 'view', $countries->id]) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'view', $countries->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'edit', $countries->id]) ?>
-                    <?= $this->Form->postLink(__('Remove'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'removeCountry', $continent->id, $countries->id], ['confirm' => __('Are you sure you want to delete {0}?', $countries->name)]) ?>
+                    <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['plugin' => null, 'controller' => 'Countries', 'action' => 'edit', $countries->id], ['escape' => false, 'class' => 'btn btn-primary',]) ?>
+                    <?= $this->Form->postLink('<span class="fa fa-times"></span>', ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'removeCountry', $continent->id, $countries->id], ['escape' => false, 'class' => 'btn btn-danger', 'confirm' => __('Are you sure you want to delete {0}?', $countries->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

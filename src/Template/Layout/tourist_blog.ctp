@@ -135,6 +135,12 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
                     <?= $this->Html->link(__('New Country'), ['controller' => 'Countries', 'action' => 'add']) ?>
                 </li>
 
+                <?php if ($user_id === 1): ?>
+                <li class="nav-item">
+                    <?= $this->Html->link(__('Admin Panel'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'index']) ?>
+                </li>
+                <?php endif; ?>
+
                 <li class="nav-item active">
                     <?= $this->Html->link(__('Logout'), ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'logout']) ?>
                 </li>

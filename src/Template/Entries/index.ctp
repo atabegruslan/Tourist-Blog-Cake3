@@ -33,13 +33,13 @@ use Cake\Utility\Hash;
             <tr>
                 <!-- <td><?= $this->Number->format($entry->id) ?></td> -->
                 <td><?= $this->Html->link(h($entry->place), ['action' => 'view', $entry->id]) ?></td>
-                <td><?= $entry->has('user') ? ( ($entry->user->id === 1) ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : $entry->user->name ) : '' ?></td>
+                <td><?= $entry->has('user') ? ( ($user_id === 1) ? $this->Html->link($entry->user->name, ['plugin' => 'UAC', 'controller' => 'Users', 'action' => 'view', $entry->user->id]) : $entry->user->name ) : '' ?></td>
                 <td><?= h($entry->time) ?></td>
                 <td><?= $entry->has('country') ? $this->Html->link($entry->country->name, ['controller' => 'Countries', 'action' => 'view', $entry->country->id]) : '' ?></td>
                 <td><?= $entry->has('country') && $entry->country->has('continents') ? implode(', ', Hash::extract($entry->country->continents, '{n}.name')) : '' ?></td>                
                 <td class="actions">
-                    <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['action' => 'edit', $entry->id], ['escape' => false,]) ?>
-                    <?= $this->Form->postLink('<span class="fa fa-trash"></span>', ['action' => 'delete', $entry->id], ['escape' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $entry->id)]) ?>
+                    <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['action' => 'edit', $entry->id], ['escape' => false, 'class' => 'btn btn-primary',]) ?>
+                    <?= $this->Form->postLink('<span class="fa fa-trash"></span>', ['action' => 'delete', $entry->id], ['escape' => false, 'class' => 'btn btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $entry->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

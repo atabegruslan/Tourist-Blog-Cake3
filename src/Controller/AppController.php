@@ -81,6 +81,7 @@ class AppController extends Controller
 
     public function beforeRender(Event $event) 
     {
-        
+        $user_id = $this->Auth->user('id');
+        $this->set(compact('user_id'));
     }
 }
