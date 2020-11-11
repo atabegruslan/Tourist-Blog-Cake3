@@ -57,7 +57,7 @@ class ContinentsController extends AppController
             }
             $this->Flash->error(__('The continent could not be saved. Please, try again.'));
         }
-        $countries = $this->Continents->Countries->find('list', ['limit' => 200]);
+        $countries = $this->Continents->Countries->find('list');
         $this->set(compact('continent', 'countries'));
     }
 
@@ -82,7 +82,7 @@ class ContinentsController extends AppController
             }
             $this->Flash->error(__('The continent could not be saved. Please, try again.'));
         }
-        $countries = $this->Continents->Countries->find('list', ['limit' => 200]);
+        $countries = $this->Continents->Countries->find('list');
         $this->set(compact('continent', 'countries'));
     }
 

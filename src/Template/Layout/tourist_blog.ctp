@@ -77,7 +77,7 @@ $html5Shim =
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 HTML;
-$this->prepend('css', $this->Html->css(['bootstrap/bootstrap']));
+$this->prepend('css', $this->Html->css(['bootstrap/bootstrap', 'travel_blog']));
 
 $this->append('css', $html5Shim);
 
@@ -100,9 +100,9 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
-<!-- 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 
+        <?= $this->Html->css('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
+<!-- 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
@@ -110,8 +110,6 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
  -->
     </head>
 
@@ -150,7 +148,11 @@ $this->prepend('script', $this->Html->script(['jquery/jquery', 'bootstrap/bootst
 
     <?php
     echo $this->fetch('tb_footer');
+
     echo $this->fetch('script');
+
+    echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js');
+
     echo $this->fetch('tb_body_end');
     ?>
 

@@ -91,10 +91,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class); // http://{domain}/entries
 
-    $routes->scope('/admin', function ($routes) {
-        $routes->loadPlugin('AdminPanel'); // http://{domain}/admin-panel/continents
-        //$routes->connect('/', ['controller' => 'Continents', 'action' => 'index', 'plugin' => 'AdminPanel']);
-    });
+    // $routes->scope('/admin', function ($routes) {
+    //     //$routes->loadPlugin('AdminPanel'); // http://{domain}/admin-panel/continents
+    //     $routes->connect('/', ['controller' => 'Continents', 'action' => 'index', 'plugin' => 'AdminPanel']);
+    // });
 });
 
 /**

@@ -1,0 +1,4 @@
+.entries img,
+.entries video {
+	max-height: 300px;
+}

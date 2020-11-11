@@ -6,7 +6,7 @@
 ?>
 
 <div class="entries form large-9 medium-8 columns content">
-    <?= $this->Form->create($entry) ?>
+    <?= $this->Form->create($entry, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Edit Entry') ?></legend>
         <?php

@@ -6,12 +6,8 @@
 ?>
 
 <div class="entries view large-9 medium-8 columns content">
-    <h3><?= h($entry->id) ?></h3>
+    <h3><?= h($entry->place) ?></h3>
     <table class="table vertical-table">
-        <tr>
-            <th scope="row"><?= __('Place') ?></th>
-            <td><?= h($entry->place) ?></td>
-        </tr>
         <tr>
             <th scope="row"><?= __('Comments') ?></th>
             <td><?= h($entry->comments) ?></td>

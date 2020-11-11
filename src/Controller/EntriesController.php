@@ -167,15 +167,26 @@ class EntriesController extends AppController
         $entry = $this->Entries->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $entry = $this->Entries->patchEntity($entry, $this->request->getData());
-            if ($this->Entries->save($entry)) {
+
+        if ($this->request->is(['patch', 'post', 'put'])) 
+        {
+            $data = $this->request->getData();
+
+            $this->upload_image($data);
+            $this->upload_video($data);
+
+            $entry = $this->Entries->patchEntity($entry, $data);
+
+            if ($this->Entries->save($entry)) 
+            {
                 $this->Flash->success(__('The entry has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            
             $this->Flash->error(__('The entry could not be saved. Please, try again.'));
         }
+
         $users = $this->Entries->Users->find('list', ['limit' => 200]);
 
         $webroot = $this->webroot;
