@@ -22,7 +22,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'view', $countries->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'edit', $countries->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['plugin' => null, 'controller' => 'Countries', 'action' => 'delete', $countries->id], ['confirm' => __('Are you sure you want to delete # {0}?', $countries->id)]) ?>
+                    <?= $this->Form->postLink(__('Remove'), ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'removeCountry', $continent->id, $countries->id], ['confirm' => __('Are you sure you want to delete {0}?', $countries->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

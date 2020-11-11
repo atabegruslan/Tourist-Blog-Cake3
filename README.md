@@ -976,9 +976,36 @@ Model:
 
 https://book.cakephp.org/3/en/orm/saving-data.html#saving-entities
 
+## Cron Job
+
+Freestyle and Manual ways:
+- https://stackoverflow.com/questions/3192070/cron-job-with-cakephp
+- https://sjinnovation.com/set-cron-job-cakephp-project/
+
+Plugin:
+- https://github.com/nojimage/cakephp-cron-jobs
+
+Documentation's way:
+- https://book.cakephp.org/3/en/console-and-shells.html
+    - https://book.cakephp.org/3/en/console-and-shells/commands.html
+        - https://book.cakephp.org/3/en/console-and-shells/cron-jobs.html
+
+In Cake 2:
+
+![](https://raw.githubusercontent.com/atabegruslan/Tourist-Blog-Cake3/master/Illustrations/cron_cake_2.PNG)
+
+## Email
+
+https://book.cakephp.org/3/en/core-libraries/email.html
+
+## Misc
+
+- https://www.tutorialandexample.com/cakephp-formhelper/
+- https://stackoverflow.com/questions/41148482/cakephp-3-add-specific-js-css-file-to-a-specific-view
+- https://stackoverflow.com/questions/43871420/insert-an-icon-into-a-link-with-htmlhelper-in-cakephp-3
+
 # Todo
 
-- Crontab
 - Locale
 - APIs
 - IO Excel/CSV

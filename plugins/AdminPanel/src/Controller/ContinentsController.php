@@ -2,6 +2,7 @@
 namespace AdminPanel\Controller;
 
 use AdminPanel\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Continents Controller
@@ -104,5 +105,20 @@ class ContinentsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function removeCountry($continentId, $countryId)
+    {
+        // https://www.tutorialspoint.com/cakephp/cakephp_delete_a_record.htm
+        // https://book.cakephp.org/3/en/orm/query-builder.html
+        $xref = TableRegistry::getTableLocator()->get('continents_countries');
+
+        $entry = $xref->find()->where(['continent_id' => $continentId, 'country_id' => $countryId])->first();;
+
+        $xref->delete($entry);
+        
+        return $this->redirect(
+            ['plugin' => 'AdminPanel', 'controller' => 'Continents', 'action' => 'view', $continentId]
+        );
     }
 }
